@@ -1,15 +1,22 @@
 # Mh's dotfiles
 
-TODO: Screenshot
+![Screenshot](http://i.imgur.com/q6zjFOd.png)
 [wallpaper source](http://alex-tooth.deviantart.com/art/Follow-the-wind-513407376) - taken from [this setup](https://www.reddit.com/r/unixporn/comments/4inmkn/xfce_its_nothing_special_but_its_mine/)
 
 *OS:* Arch Linux
+
 *Window Manager:* bspwm
+
 *Panel:* lemonbar-xft with Ruby script
+
 *Terminal:* URxvt
+
 *Shell:* zsh with grml config
+
 *GTK theme:* Arc
+
 *Icon theme:* Paper
+
 
 ## Installation
 I haven't set this up properly yet so you'll have to install everything in depends.txt (which uses Arch package names so if you use anything else you'll have to search for equivalents and/or compile/fetch stuff yourself), then symlink everything, I guess.
@@ -29,7 +36,7 @@ I haven't set this up properly yet so you'll have to install everything in depen
 	* [ ] Actually theme Rofi
 * [ ] Probably impossible
 	* [ ] IBus Hangul indicator in panel
-* [ ] 
+* [ ] zsh theme
 I'll find more stuff to rice later...
 
 ## Thanks to...
