@@ -19,7 +19,7 @@ default_bar_size 0 4
 default_graph_size 0 24
 border_outer_margin 4
 default_color ffffff
-
+minimum_size 360
 
 TEXT
 ${font RobotoSlab:Light:size=36}${time %A, %d %b}

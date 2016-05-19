@@ -31,6 +31,7 @@ I haven't set this up properly yet so you'll have to install everything in depen
 * [ ] Probably impossible
 	* [ ] IBus Hangul indicator in panel
 * [ ] zsh theme
+
 I'll find more stuff to rice later...
 
 ## Thanks to...
