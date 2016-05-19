@@ -3,19 +3,13 @@
 ![Screenshot](http://i.imgur.com/q6zjFOd.png)
 [wallpaper source](http://alex-tooth.deviantart.com/art/Follow-the-wind-513407376) - taken from [this setup](https://www.reddit.com/r/unixporn/comments/4inmkn/xfce_its_nothing_special_but_its_mine/)
 
-*OS:* Arch Linux
-
-*Window Manager:* bspwm
-
-*Panel:* lemonbar-xft with Ruby script
-
-*Terminal:* URxvt
-
-*Shell:* zsh with grml config
-
-*GTK theme:* Arc
-
-*Icon theme:* Paper
+ * **OS:** Arch Linux
+ * **Window Manager:** bspwm
+ * **Panel:** lemonbar-xft with Ruby script
+ * **Terminal:** URxvt
+ * **Shell:** zsh with grml config
+ * **GTK theme:** Arc
+ * **Icon theme:** Paper
 
 
 ## Installation
