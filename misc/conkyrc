@@ -3,7 +3,7 @@ gap_y 56
 alignment top_left
 update_interval 0.5
 use_xft yes
-xftfont Roboto	:size=12
+xftfont Lato	:size=12
 own_window yes
 own_window_type desktop
 own_window_transparent no
