@@ -1,0 +1,17 @@
+bspwm
+sxhkd
+compton
+ruby
+lemonbar-xft-git
+ttf-font-awesome
+ttf-google-fonts-git
+ttf-nanum
+xtitle-git
+feh
+scrot
+rxvt-unicode
+rofi
+xorg-xbacklight
+paper-icon-theme-git
+gtk-theme-arc
+conky

@@ -1,0 +1,2 @@
+#!/bin/bash
+ruby ~/.dots/bar/bar.rb
