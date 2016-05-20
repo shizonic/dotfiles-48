@@ -144,9 +144,12 @@ super + @button{1-3}
 Print
 	scrot & notify-send "Screenshot taken." || notify-send "Failed to save screenshot"
 
-# TODO: figure out why this is broken
+# the one below doesn't work for some reason
 shift + Print
 	scrot -s & notify-send "Screenshot taken." || notify-send "Failed to save screenshot"
+
+alt + Print
+	scrot -u & notify-send "Screenshot taken." || notify-send "Failed to save screenshot"
 
 #
 # App Launchers
