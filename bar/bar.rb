@@ -88,7 +88,7 @@ end
 def caps_lock
 	`xset -q | grep "Caps Lock: *on" 1>/dev/null`;  result=$?.success?
 	if result
-		block "  "
+		block ""
 	end
 end
 
