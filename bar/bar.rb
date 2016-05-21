@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require 'json'
+require 'io/wait'
 
 # == Panel appearance ==
 
@@ -33,6 +34,11 @@ require 'json'
 # Puts a background with padding behind text
 def block(text)
 	"%{B#{@colours[:block]}} #{text} %{B#{@colours[:transparent]}}"
+end
+
+# A clickable area
+def clickable(command)
+	"%{A:#{command}:}#{yield}%{A}"
 end
 
 # Gets the name of the current desktop
@@ -93,16 +99,16 @@ def desktops
 	out	= ""
 	for desktop in get_desktops
 		count += 1
-		out += "%{A:#{command} #{count}:}" # TODO: Broken
+		text = ""
 		if count > 1
-			out += ' '
+			text += ' '
 		end
 		if desktop == current_desktop
-			out += ''	
+			text += ''	
 		else
-			out += ''
+			text += ''
 		end
-		out += "%{A}"
+		out += clickable("#{command} #{count}") { text }
 	end
 	block out
 end
@@ -122,12 +128,14 @@ def music
 		playing = data_hash["playing"]
 		artist = data_hash["song"]["artist"]
 		title = data_hash["song"]["title"]
+		text = ""
 		if title == nil
-			block "%{A:google-play-music-desktop-player:}  Not playing %{A}"
+			text = " Not playing"
 		else
 			icon = playing ? "" : ""
-			block " #{icon} #{artist} - #{title} "
+			text = " #{icon} #{artist} - #{title} "
 		end
+		block(clickable("google-play-music-desktop-player") { text })
 	else
 		nil
 	end
@@ -208,9 +216,10 @@ fonts = ""
 @fonts.each { |font| fonts += " -f #{font}" }
 
 #Start lemonbar
-IO.popen("lemonbar -g #{@size[:width]-(@size[:gap]*2)}x#{@size[:height]}+#{@size[:gap]}+#{@size[:gap]} -F '#{@colours[:text]}' -B '#{@colours[:transparent]}'#{fonts}", "r+") do |pipe|
+IO.popen("lemonbar -p -g #{@size[:width]-(@size[:gap]*2)}x#{@size[:height]}+#{@size[:gap]}+#{@size[:gap]} -F '#{@colours[:text]}' -B '#{@colours[:transparent]}'#{fonts}", "r+") do |pipe|
 	loop do
 		pipe.puts "%{l}#{@left.call}%{c}#{@centre.call}%{r}#{@right.call}"
+		`#{pipe.readline}` if pipe.ready?
 		sleep 0.25 # Limit updates
 	end
 end
