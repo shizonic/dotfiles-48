@@ -17,7 +17,7 @@ I haven't set this up properly yet so you'll have to install everything in depen
 
 ## To-do list
 * [ ] Panel
-	* [ ] Volume block (or not)
+	* [x] Volume block
 	* [x] Clickable areas
 	* [ ] Refactor/cleanup
 * [ ] Keybinds

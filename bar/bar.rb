@@ -179,13 +179,12 @@ end
 
 # Displays volume percentage
 def volume
-	# Unused - might actually never implement this because I feel like it's pointless
-	mute = `amixer get Master | egrep "Playback.*?\[o" | egrep "\[o.+\]"`.chomp
-	if mute == '[on]'
+	`amixer get Master | grep "\\[on\\]"`;  result=$?.success?
+	if result
 		pct = `amixer get Master | grep -o "\[[0-9]*\%\]" | cut -c2-3 | sed 's/%//' | head -n 1`.chomp
 		block " #{pct}%"
 	else
-		block " Muted"		
+		block " Muted"
 	end
 end
 
@@ -203,7 +202,7 @@ end
 
 # The blocks on the right of the bar
 @right = Proc.new do
-	"#{caps_lock} #{network} #{battery} #{time}"
+	"#{caps_lock} #{network} #{volume} #{battery} #{time}"
 end
 
 trap("SIGINT") { `bspc config top_padding 0`; exit 0 }
@@ -216,7 +215,7 @@ fonts = ""
 @fonts.each { |font| fonts += " -f #{font}" }
 
 #Start lemonbar
-IO.popen("lemonbar -p -g #{@size[:width]-(@size[:gap]*2)}x#{@size[:height]}+#{@size[:gap]}+#{@size[:gap]} -F '#{@colours[:text]}' -B '#{@colours[:transparent]}'#{fonts}", "r+") do |pipe|
+IO.popen("lemonbar -g #{@size[:width]-(@size[:gap]*2)}x#{@size[:height]}+#{@size[:gap]}+#{@size[:gap]} -F '#{@colours[:text]}' -B '#{@colours[:transparent]}'#{fonts}", "r+") do |pipe|
 	loop do
 		pipe.puts "%{l}#{@left.call}%{c}#{@centre.call}%{r}#{@right.call}"
 		`#{pipe.readline}` if pipe.ready?
