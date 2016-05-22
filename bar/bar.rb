@@ -215,10 +215,14 @@ fonts = ""
 @fonts.each { |font| fonts += " -f #{font}" }
 
 #Start lemonbar
-IO.popen("lemonbar -g #{@size[:width]-(@size[:gap]*2)}x#{@size[:height]}+#{@size[:gap]}+#{@size[:gap]} -F '#{@colours[:text]}' -B '#{@colours[:transparent]}'#{fonts}", "r+") do |pipe|
-	loop do
-		pipe.puts "%{l}#{@left.call}%{c}#{@centre.call}%{r}#{@right.call}"
-		`#{pipe.readline}` if pipe.ready?
-		sleep 0.25 # Limit updates
+begin
+	IO.popen("lemonbar -g #{@size[:width]-(@size[:gap]*2)}x#{@size[:height]}+#{@size[:gap]}+#{@size[:gap]} -F '#{@colours[:text]}' -B '#{@colours[:transparent]}'#{fonts}", "r+") do |pipe|
+		loop do
+			pipe.puts "%{l}#{@left.call}%{c}#{@centre.call}%{r}#{@right.call}"
+			`#{pipe.readline}` if pipe.ready?
+			sleep 0.25 # Limit updates
+		end
 	end
+rescue Exception => e
+	`bspc config top_padding 0`
 end

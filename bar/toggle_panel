@@ -1,0 +1,7 @@
+#!/bin/bash
+PANEL_PID=$(pidof lemonbar)
+if [[ $PANEL_PID ]]; then
+	kill -9 $PANEL_PID
+else
+	~/.dots/bar/panel &
+fi

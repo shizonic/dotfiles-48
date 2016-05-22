@@ -23,7 +23,7 @@ I haven't set this up properly yet so you'll have to install everything in depen
 * [ ] Keybinds
 	* [ ] Screenshot selection
 	* [ ] Do something with the NYI function keys
-	* [ ] Panel toggle
+	* [x] Panel toggle
 	* [ ] Gaps toggle
 * [ ] Misc
 	* [ ] A lock screen

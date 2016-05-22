@@ -138,6 +138,13 @@ super + @button{1-3}
 	bspc pointer -u
 
 #
+# panel & gaps
+#
+
+super + slash
+	.dots/bar/toggle_panel
+
+#
 # screenshots
 #
 
