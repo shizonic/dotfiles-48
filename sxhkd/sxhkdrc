@@ -180,7 +180,8 @@ ctrl + alt + t
 # Audio control [F1-F4]
 
 XF86Audio{Lower,Raise}Volume
-	amixer -q sset Master 3%{-,+}
+	amixer -q sset Master 3%{-,+}; \
+	~/.dots/scripts/notify-volume
 
 XF86AudioMute
 	amixer -q set Master toggle
@@ -191,7 +192,8 @@ XF86AudioMicMute
 # Brightness adjustment [F5-F6]
 
 XF86MonBrightness{Up,Down}
-	xbacklight {+,-}3
+	xbacklight {+,-}3; \
+	~/.dots/scripts/notify-backlight
 
 # Display/WLAN toggles [F7-F8]
 

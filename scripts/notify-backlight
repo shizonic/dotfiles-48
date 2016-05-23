@@ -1,0 +1,4 @@
+#!/bin/bash
+pkill dunst
+bl=$(printf "%.0f" $(xbacklight))
+notify-send " $bl%"

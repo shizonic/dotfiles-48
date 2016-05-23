@@ -1,0 +1,5 @@
+#!/bin/bash
+pkill dunst
+vol=$(amixer get Master | grep -o "\[[0-9]*\%\]" | cut -c2-3 | sed 's/%//' | head -n 1)
+echo $vol
+notify-send " $vol%"
