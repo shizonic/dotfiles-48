@@ -221,7 +221,7 @@ end
 
 # The blocks on the right of the bar
 @right = Proc.new do
-	blocks = [caps_lock, network, volume, battery, time]
+	blocks = [caps_lock, network, battery, time]
 	out = ""
 	blocks.each_with_index do | blk, index |
 		if blk != nil
