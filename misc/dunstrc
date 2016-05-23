@@ -1,5 +1,5 @@
 [global]
-    font = Lato 10, FontAwesome 10
+    font = Lato 9, FontAwesome 9
     allow_markup = yes
     format = "<b>%s</b>\n%b"
     sort = yes
@@ -19,8 +19,8 @@
     show_indicators = yes
     line_height = 0
     separator_height = 2
-    padding = 4
-    horizontal_padding = 4
+    padding = 3
+    horizontal_padding = 3
     separator_color = frame
     startup_notification = false
     dmenu = /usr/bin/rofi -dmenu dunst:
