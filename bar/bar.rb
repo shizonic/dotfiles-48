@@ -160,7 +160,7 @@ end
 def network
 	ssid = `iwgetid -r`.chomp
 	if ssid.length > 0
-		block " #{ssid}"
+		block(clickable("urxvt -e nmtui") { " #{ssid}" })
 	else
 		nil
 	end
@@ -197,9 +197,9 @@ def volume
 	`amixer get Master | grep "\\[on\\]"`;  result=$?.success?
 	if result
 		pct = `amixer get Master | grep -o "\[[0-9]*\%\]" | cut -c2-3 | sed 's/%//' | head -n 1`.chomp
-		block " #{pct}%"
+		block(clickable("urxvt -e alsamixer") { " #{pct}%" })
 	else
-		block " Muted"
+		block(clickable("urxvt -e alsamixer") { " Muted" })
 	end
 end
 
