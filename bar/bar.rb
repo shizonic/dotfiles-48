@@ -199,7 +199,7 @@ def volume
 		pct = `amixer get Master | grep -o "\[[0-9]*\%\]" | cut -c2-3 | sed 's/%//' | head -n 1`.chomp
 		block(clickable("urxvt -e alsamixer") { " #{pct}%" })
 	else
-		block(clickable("urxvt -e alsamixer") { " Muted" })
+		nil
 	end
 end
 
@@ -220,8 +220,10 @@ end
 	blocks = [caps_lock, network, volume, battery, time]
 	out = ""
 	blocks.each_with_index do | blk, index |
-		out += blk if blk != nil
-		out += " " unless (index + 1) == blocks.length
+		if blk != nil
+			out += blk
+			out += " " unless (index + 1) == blocks.length
+		end
 	end
 	out
 end
