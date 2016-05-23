@@ -208,9 +208,8 @@ end
 
 # The blocks on the right of the bar
 @right = Proc.new do
-	blocks = [caps_lock, network, volume, battery, time]
 	out = ""
-	blocks.each_with_index do | blk, index |
+	%w(caps_lock network volume battery time).each_with_index do | blk, index |
 		out += blk if blk != nil
 		out += " " unless (index + 1) == blocks.length
 	end
