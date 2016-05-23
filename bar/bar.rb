@@ -33,8 +33,17 @@ require 'io/wait'
 
 # Puts a background with padding behind text
 def block(text)
-	"%{B#{@colours[:block]}} #{text} %{B#{@colours[:transparent]}}"
+	"#{back_colour :block} #{text} #{back_colour :transparent}"
 end
+
+def back_colour(col)
+	"%{B#{@colours[col]}}"
+end
+
+def text_colour(col)
+	"%{F#{@colours[col]}}"
+end
+
 
 # A clickable area
 def clickable(command)
@@ -208,8 +217,9 @@ end
 
 # The blocks on the right of the bar
 @right = Proc.new do
+	blocks = [caps_lock, network, volume, battery, time]
 	out = ""
-	%w(caps_lock network volume battery time).each_with_index do | blk, index |
+	blocks.each_with_index do | blk, index |
 		out += blk if blk != nil
 		out += " " unless (index + 1) == blocks.length
 	end
