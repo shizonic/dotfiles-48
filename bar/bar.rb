@@ -85,11 +85,17 @@ def battery
 end
 
 # The T440p doesn't have a Caps Lock LED so I'm using this instead
-def caps_lock
+def generic_caps_lock
 	`xset -q | grep "Caps Lock: *on" 1>/dev/null`;  result=$?.success?
 	if result
 		block ""
 	end
+end
+
+def caps_lock
+	status = ""
+	File.open("/sys/class/leds/input4::capslock/brightness", "r") { |file| status = file.read.chomp }
+	block "" if status == "1"
 end
 
 # Displays icons for each desktop
