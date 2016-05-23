@@ -78,7 +78,7 @@ def battery
 		else
 			icon = ""
 		end
-		block " #{icon} #{pct}% "
+		block "#{icon} #{pct}%"
 	else
 		nil
 	end
@@ -139,7 +139,7 @@ def music
 			text = " Not playing"
 		else
 			icon = playing ? "" : ""
-			text = " #{icon} #{artist} - #{title} "
+			text = " #{icon} #{artist} - #{title}"
 		end
 		block(clickable("google-play-music-desktop-player") { text })
 	else
@@ -151,7 +151,7 @@ end
 def network
 	ssid = `iwgetid -r`.chomp
 	if ssid.length > 0
-		block "  #{ssid} "
+		block " #{ssid}"
 	else
 		nil
 	end
@@ -159,7 +159,7 @@ end
 
 # Shows the time (12h format)
 def time
-	block " #{`date +%-I:%M%P`.chomp} "
+	block "#{`date +%-I:%M%P`.chomp}"
 end
 
 # Displays the title of the currently focused window
@@ -177,7 +177,7 @@ def title
 				end
 			end
 		end
-		block " #{display_title} "  # display title with padding
+		block display_title
 	else
 		nil
 	end
@@ -208,7 +208,13 @@ end
 
 # The blocks on the right of the bar
 @right = Proc.new do
-	"#{caps_lock} #{network} #{volume} #{battery} #{time}"
+	blocks = [caps_lock, network, volume, battery, time]
+	out = ""
+	blocks.each_with_index do | blk, index |
+		out += blk if blk != nil
+		out += " " unless (index + 1) == blocks.length
+	end
+	out
 end
 
 trap("SIGINT") { `bspc config top_padding 0`; exit 0 }
