@@ -213,5 +213,4 @@ XF86LaunchA
 	rofi -show window -width 100
 
 XF86Explorer
-	caja
-
+	urxvt -e ranger
