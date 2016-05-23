@@ -160,7 +160,11 @@ end
 def network
 	ssid = `iwgetid -r`.chomp
 	if ssid.length > 0
-		block(clickable("urxvt -e nmtui") { " #{ssid}" })
+		text = " #{ssid}"
+		if ssid.start_with? "IdentifY"
+			text = " #{ssid[10..-2]}"
+		end
+		block(clickable("urxvt -e nmtui") { text })
 	else
 		nil
 	end
