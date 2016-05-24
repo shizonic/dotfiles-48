@@ -14,18 +14,24 @@ require 'io/wait'
 	:text => "#FFFFFFFF",
 	:block => "#66000000"
 }
-@fonts = ["Lato", "NanumGothic", "FontAwesome"]
+@fonts = ["Lato", "NanumGothic", "MaterialDesignIcons"]
 
 # == Block variables ==
 
 @app_icons = {
-	"Mozilla Firefox" => "",
-	"Mozilla Firefox (Private Browsing)" => "",
-	"Chromium" => "",
-	"Sublime Text (UNREGISTERED)" => "",
-	"LibreOffice Writer" => "",
-	"LibreOffice Calc" => "",
-	"LibreOffice Impress" => ""
+	"Mozilla Firefox" => "\uF239",
+	"Mozilla Firefox (Private Browsing)" => "\uF239",
+	"Chromium" => "\uF2AF",
+	"Sublime Text (UNREGISTERED)" => "\uF39E",
+	"LibreOffice Writer" => "\uF22C",
+	"LibreOffice Calc" => "\uF21B",
+	"LibreOffice Impress" => "\uF227"
+}
+# TODO: styling/format options for desktops block
+@desktops = { 
+	:show_names => false,
+	:current_desktop => "\uF12E",
+	:inactive_desktop => "\uF131"
 }
 @last_music_json = nil
 
@@ -73,19 +79,29 @@ def battery
 		pct = ((values["energy_now"].to_f / values["energy_full"].to_f) * 100).round
 		icon = ""
 		if values["status"] == "Discharging"
-			if pct > 80
-				icon = ""
+			if pct > 90
+				icon = "\uF079"
+			elsif pct > 80
+				icon = "\uF082"
+			elsif pct > 70
+				icon = "\uF081"
 			elsif pct > 60
-				icon = ""
+				icon = "\uF07F"
+			elsif pct > 50
+				icon = "\uF07E"
 			elsif pct > 40
-				icon = ""
+				icon = "\uF07D"
+			elsif pct > 30
+				icon = "\uF07C"
 			elsif pct > 20
-				icon = ""
+				icon = "\uF07B"
 			elsif pct > 10
-				icon = ""
+				icon = "\uF07A"
+			elsif pct > 5
+				icon = "\uF083"
 			end
 		else
-			icon = ""
+			icon = "\uF084" # TODO: Incremental charging icons
 		end
 		block "#{icon} #{pct}%"
 	else
@@ -97,14 +113,14 @@ end
 def generic_caps_lock
 	`xset -q | grep "Caps Lock: *on" 1>/dev/null`;  result=$?.success?
 	if result
-		block ""
+		block "\uF632"
 	end
 end
 
 def caps_lock
 	status = ""
 	File.open("/sys/class/leds/input4::capslock/brightness", "r") { |file| status = file.read.chomp }
-	block "" if status == "1"
+	block "\uF632" if status == "1"
 end
 
 # Displays icons for each desktop
@@ -118,10 +134,14 @@ def desktops
 		if count > 1
 			text += ' '
 		end
-		if desktop == current_desktop
-			text += ''	
+		if @desktops[:show_names]
+			text += desktop
 		else
-			text += ''
+			if desktop == current_desktop
+				text += @desktops[:current_desktop]	
+			else
+				text += @desktops[:inactive_desktop]
+			end
 		end
 		out += clickable("#{command} #{count}") { text }
 	end
@@ -145,9 +165,9 @@ def music
 		title = data_hash["song"]["title"]
 		text = ""
 		if title == nil
-			text = " Not playing"
+			text = "\uF386 Not playing"
 		else
-			icon = playing ? "" : ""
+			icon = playing ? "\uF40A" : "\uF3E4"
 			text = " #{icon} #{artist} - #{title}"
 		end
 		block(clickable("google-play-music-desktop-player") { text })
@@ -160,9 +180,9 @@ end
 def network
 	ssid = `iwgetid -r`.chomp
 	if ssid.length > 0
-		text = " #{ssid}"
+		text = "\uF5A9 #{ssid}"
 		if ssid.start_with? "IdentifY"
-			text = " #{ssid[10..-2]}"
+			text = "\uF2DC #{ssid[10..-2]}"
 		end
 		block(clickable("urxvt -e nmtui") { text })
 	else
@@ -201,7 +221,7 @@ def volume
 	`amixer get Master | grep "\\[on\\]"`;  result=$?.success?
 	if result
 		pct = `amixer get Master | grep -o "\[[0-9]*\%\]" | cut -c2-3 | sed 's/%//' | head -n 1`.chomp
-		block(clickable("urxvt -e alsamixer") { " #{pct}%" })
+		block(clickable("urxvt -e alsamixer") { "\uF580 #{pct}%" })
 	else
 		nil
 	end

@@ -14,6 +14,7 @@
 
 ## Installation
 I haven't set this up properly yet so you'll have to install everything in depends.txt (which uses Arch package names so if you use anything else you'll have to search for equivalents and/or compile/fetch stuff yourself), then symlink everything, I guess.
+Requires the [Material Design Icons font](https://materialdesignicons.com), place it in your /usr/share/fonts/TTF/ and build font cache.
 
 ## To-do list
 * [ ] Panel
