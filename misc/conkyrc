@@ -26,3 +26,5 @@ ${font RobotoSlab:Light:size=36}${time %A, %d %b}
 ${font RobotoSlab:size=48}${time %-l:%M:%S %P}
 ${font FontAwesome}${font} ${voffset -3} ${cpu}% @ ${freq} MHz${goto 200}${font FontAwesome}${font} ${voffset -3} ${mem} / ${memmax}
 ${font FontAwesome}${font} ${voffset -3} ${fs_used /} / ${fs_size /}${goto 200}${font FontAwesome}${font} ${voffset -3}${font FontAwesome}${font}${voffset -3} ${downspeed wlp3s0}${goto 300}${font FontAwesome}${font}${voffset -3} ${upspeed wlp3s0}
+
+${exec cat ~/todo.txt}
