@@ -6,6 +6,7 @@ conky -c ~/.dots/misc/conkyrc &
 ~/.dots/bar/panel &
 ibus-daemon -drx
 xrdb -merge ~/.dots/misc/Xresources
+xsetroot -cursor_name left_ptr
 
 bspc config border_width         2
 bspc config window_gap          12
