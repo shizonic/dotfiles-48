@@ -105,7 +105,21 @@ def battery
 				icon = "\uF083"
 			end
 		else
-			icon = "\uF084" # TODO: Incremental charging icons
+			if pct > 90
+				icon = "\uF085"
+			elsif pct > 80
+				icon = "\uF08B"
+			elsif pct > 65
+				icon = "\uF08A"
+			elsif pct > 50
+				icon = "\uF089"
+			elsif pct > 30
+				icon = "\uF088"
+			elsif pct > 15
+				icon = "\uF087"
+			else
+				icon = "\uF086"
+			end
 		end
 		block "#{icon} #{pct}%"
 	else
