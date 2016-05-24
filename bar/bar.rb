@@ -22,7 +22,7 @@ require 'io/wait'
 	"Mozilla Firefox" => "\uF239",
 	"Mozilla Firefox (Private Browsing)" => "\uF239",
 	"Chromium" => "\uF2AF",
-	"Sublime Text (UNREGISTERED)" => "\uF39E",
+	"Sublime Text (UNREGISTERED)" => "\uF173",
 	"LibreOffice Writer" => "\uF22C",
 	"LibreOffice Calc" => "\uF21B",
 	"LibreOffice Impress" => "\uF227"
