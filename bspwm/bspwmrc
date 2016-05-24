@@ -1,6 +1,6 @@
 #! /bin/sh
 sxhkd &
-compton -c &
+compton -cb --config ~/.dots/misc/compton.conf &
 ~/.fehbg &
 conky -c ~/.dots/misc/conkyrc &
 ~/.dots/bar/panel &

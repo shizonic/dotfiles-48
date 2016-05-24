@@ -23,7 +23,7 @@ require 'io/wait'
 	"Mozilla Firefox (Private Browsing)" => "",
 	"Chromium" => "",
 	"Sublime Text (UNREGISTERED)" => "",
-	"LibreOffice Write" => "",
+	"LibreOffice Writer" => "",
 	"LibreOffice Calc" => "",
 	"LibreOffice Impress" => ""
 }
