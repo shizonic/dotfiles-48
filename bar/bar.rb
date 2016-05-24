@@ -105,7 +105,9 @@ def battery
 				icon = "\uF083"
 			end
 		else
-			if pct > 90
+			if pct == 100
+				return block "\uF084" # hide percentage when full
+			elsif pct > 90
 				icon = "\uF085"
 			elsif pct > 80
 				icon = "\uF08B"
