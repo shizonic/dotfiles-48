@@ -18,7 +18,7 @@ require 'io/wait'
 
 # == Block variables ==
 
-@app_icons = {
+@app_icon_suffix = {
 	"Mozilla Firefox" => "\uF239",
 	"Mozilla Firefox (Private Browsing)" => "\uF239",
 	"Chromium" => "\uF2AF",
@@ -26,6 +26,10 @@ require 'io/wait'
 	"LibreOffice Writer" => "\uF22C",
 	"LibreOffice Calc" => "\uF21B",
 	"LibreOffice Impress" => "\uF227"
+}
+@app_icon_prefix = {
+	"ranger:" => "\uF24B",
+	"Slack - " => "\uF4B1"
 }
 # TODO: styling/format options for desktops block
 @desktops = { 
@@ -200,7 +204,15 @@ def title
 	title = `xtitle`.chomp
 	if title.length > 0
 		display_title = title
-		for app, icon in @app_icons
+		for app, icon in @app_icon_prefix
+			if title.start_with? app
+				if title != app
+					cap = title.length - app.length
+					display_title = "#{icon} #{title[app.length..-1]}"
+				end
+			end
+		end
+		for app, icon in @app_icon_suffix
 			if title.end_with? app
 				if title != app
 					cap = " - #{app}".length
