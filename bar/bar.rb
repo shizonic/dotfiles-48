@@ -227,6 +227,10 @@ def volume
 	end
 end
 
+def vpn
+	block "\uF306" if `pidof openvpn`.chomp.length > 0
+end
+
 # == Core ==
 
 # The blocks on the left of the bar
@@ -241,7 +245,7 @@ end
 
 # The blocks on the right of the bar
 @right = Proc.new do
-	blocks = [caps_lock, network, battery, time]
+	blocks = [caps_lock, vpn, network, battery, time]
 	out = ""
 	blocks.each_with_index do | blk, index |
 		if blk != nil

@@ -67,10 +67,11 @@ rofi.color-active:                   #ffffff,#c2cad0,#f5f5f5,#5294e2,#c2cad0
 rofi.color-window:                   #ffffff,#f5f5f5
 ! Separator style (none, dash, solid)
 rofi.separator-style:                solid
-rofi.font: Lato 16
+rofi.font: Lato 10
 rofi.opacity: 100
 rofi.location: 1
 
 URxvt*scrollBar: 	false
 URxvt*font:	xft:Sauce Code Powerline:size=10
+URxvt*internalBorder:	10
 
