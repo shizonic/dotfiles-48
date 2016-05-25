@@ -37,6 +37,7 @@ require 'io/wait'
 	:current_desktop => "\uF12E",
 	:inactive_desktop => "\uF131"
 }
+@kimpanel_show_alphanumeric = false
 @last_music_json = nil
 
 # == Basic/Common stuff ==
@@ -130,17 +131,11 @@ def battery
 end
 
 # The T440p doesn't have a Caps Lock LED so I'm using this instead
-def generic_caps_lock
+def caps_lock
 	`xset -q | grep "Caps Lock: *on" 1>/dev/null`;  result=$?.success?
 	if result
 		block "\uF632"
 	end
-end
-
-def caps_lock
-	status = ""
-	File.open("/sys/class/leds/input4::capslock/brightness", "r") { |file| status = file.read.chomp }
-	block "\uF632" if status == "1"
 end
 
 # Displays icons for each desktop
@@ -166,6 +161,17 @@ def desktops
 		out += clickable("#{command} #{count}") { text }
 	end
 	block out
+end
+
+# Displays Fcitx input mode & ThinkPad ACPI Caps Lock
+def input
+	caps = ""
+	text = ""
+	han = false # TODO
+	File.open("/sys/class/leds/input4::capslock/brightness", "r") { |file| caps = file.read.chomp }
+	text += "한 " if han
+	text += "\uF632 " if caps == "1"
+	block text[0..text.length-2] if text != ""
 end
 
 # Displays the current song from Google Play Music Desktop Player using Playback API
@@ -273,7 +279,7 @@ end
 
 # The blocks on the right of the bar
 @right = Proc.new do
-	blocks = [caps_lock, vpn, network, battery, time]
+	blocks = [input, vpn, network, battery, time]
 	out = ""
 	blocks.each_with_index do | blk, index |
 		if blk != nil

@@ -198,7 +198,7 @@ XF86MonBrightness{Up,Down}
 # Display/WLAN toggles [F7-F8]
 
 XF86Display
-	notify-send "Display Switch: NYI"
+	xrandr --output HDMI1 --auto --right-of eDP1
 
 XF86WLAN
 	rfkill list 1 | grep "yes" && notify-send -i "network-wireless" "WLAN disabled" || notify-send -i "network-wireless"  "WLAN enabled"
