@@ -208,7 +208,7 @@ XF86WLAN
 XF86Tools
 	notify-send "Tools/Settings: NYI"
 
-XF86Seach
+XF86Search
 	notify-send "Search: NYI"
 
 XF86LaunchA
