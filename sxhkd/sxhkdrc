@@ -187,7 +187,7 @@ XF86AudioMute
 	amixer -q set Master toggle
 
 XF86AudioMicMute
-	notify-send "Mic Mute: NYI"
+	amixer -q set Capture toggle
 
 # Brightness adjustment [F5-F6]
 
