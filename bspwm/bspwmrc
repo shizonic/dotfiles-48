@@ -4,9 +4,10 @@ compton -cb --config ~/.dots/misc/compton.conf &
 ~/.fehbg &
 conky -c ~/.dots/misc/conkyrc &
 ~/.dots/bar/panel &
-fcitx &
+fcitx-autostart &
 xrdb -merge ~/.dots/misc/Xresources
 xsetroot -cursor_name left_ptr
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 bspc config border_width         2
 bspc config window_gap          12

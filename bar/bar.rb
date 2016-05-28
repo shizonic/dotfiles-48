@@ -210,9 +210,14 @@ def network
 		if ssid.start_with? "IdentifY"
 			text = "\uF2DC #{ssid[10..-2]}"
 		end
+		text += " \uF306" if `pidof openvpn`.chomp.length > 0
 		block(clickable("urxvt -e nmtui") { text })
 	else
-		nil
+		if `pidof openvpn`.chomp.length > 0
+			block "\uF306"
+		else
+			nil
+		end
 	end
 end
 
@@ -261,10 +266,6 @@ def volume
 	end
 end
 
-def vpn
-	block "\uF306" if `pidof openvpn`.chomp.length > 0
-end
-
 # == Core ==
 
 # The blocks on the left of the bar
@@ -279,7 +280,7 @@ end
 
 # The blocks on the right of the bar
 @right = Proc.new do
-	blocks = [input, vpn, network, battery, time]
+	blocks = [input, network, battery, time]
 	out = ""
 	blocks.each_with_index do | blk, index |
 		if blk != nil

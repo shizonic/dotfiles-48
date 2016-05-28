@@ -1,0 +1,9 @@
+#!/bin/bash
+choice=$(echo -e "Power off\nReboot\nLog out" | rofi -dmenu -width 100 -p "Logged in as $USER")
+if [[ "$choice" == "Power off" ]]; then
+	poweroff
+elif [[ "$choice" == "Reboot" ]]; then
+	reboot
+elif [[ "$choice" == "Log out" ]]; then
+	bspc quit
+fi

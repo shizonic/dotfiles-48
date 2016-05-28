@@ -1,0 +1,2 @@
+#!/bin/bash
+pidof openvpn && nmcli con down id "경은" || nmcli con up id "경은"

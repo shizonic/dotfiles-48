@@ -8,8 +8,8 @@ super + Return
 	urxvt
 
 # program launcher
-super + space
-	rofi -show run -width 100
+super + {_,shift} + space
+	rofi -show {run,ssh} -width 100
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -20,8 +20,11 @@ super + Escape
 
 #
 # quit bspwm normally
-super + alt + Escape
+super + shift + Escape
 	bspc quit
+
+super + alt + Escape
+	~/.dots/scripts/session-menu
 
 # close and kill
 super + {_,shift + }w
@@ -173,6 +176,12 @@ super + F3
 
 super + F4
 	google-play-music-desktop-player
+
+super + F5
+	_JAVA_AWT_WM_NONREPARENTING=1 jetbrains-rubymine
+
+super + F8
+	~/.dots/scripts/toggle-vpn
 
 ctrl + alt + t
 	corebird --tweet=mltnhm
