@@ -31,6 +31,9 @@ require 'io/wait'
 	"ranger:" => "\uF24B",
 	"Slack - " => "\uF4B1"
 }
+@app_icon_exact = {
+	"Google Play Music Desktop Player" => "\uF386"
+}
 # TODO: styling/format options for desktops block
 @desktops = { 
 	:show_names => false,
@@ -39,6 +42,11 @@ require 'io/wait'
 }
 @kimpanel_show_alphanumeric = false
 @last_music_json = nil
+@music_info = { 
+	:title => nil, 
+	:artist => nil,
+	:playing => false
+}
 
 # == Basic/Common stuff ==
 
@@ -186,15 +194,15 @@ def music
 			# puts 'JSON response is too short, using last valid response.'
 			data_hash = @last_music_json
 		end
-		playing = data_hash["playing"]
-		artist = data_hash["song"]["artist"]
-		title = data_hash["song"]["title"]
+		@music_info[:playing] = data_hash["playing"]
+		@music_info[:artist] = data_hash["song"]["artist"]
+		@music_info[:title] = data_hash["song"]["title"]
 		text = ""
-		if title == nil
+		if @music_info[:title] == nil
 			text = "\uF386 Not playing"
 		else
-			icon = playing ? "\uF40A" : "\uF3E4"
-			text = " #{icon} #{artist} - #{title}"
+			icon = @music_info[:playing] ? "\uF40A" : "\uF3E4"
+			text = "#{icon} #{@music_info[:artist]} - #{@music_info[:title]}"
 		end
 		block(clickable("google-play-music-desktop-player") { text })
 	else
@@ -230,6 +238,9 @@ end
 def title
 	title = `xtitle`.chomp
 	if title.length > 0
+		if @music_info[:title] != nil
+			return block("\uF386 Google Play Music Desktop Player") if title == "#{@music_info[:title]} - #{@music_info[:artist]}"
+		end
 		display_title = title
 		for app, icon in @app_icon_prefix
 			if title.start_with? app
@@ -247,6 +258,11 @@ def title
 				else
 					display_title = "#{icon} #{title}"
 				end
+			end
+		end
+		for app, icon in @app_icon_exact
+			if title == app
+				display_title = "#{icon} #{app}"
 			end
 		end
 		block display_title
