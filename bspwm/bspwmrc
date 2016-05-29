@@ -5,6 +5,7 @@ compton -cb --config ~/.dots/misc/compton.conf &
 conky -c ~/.dots/misc/conkyrc &
 ~/.dots/bar/panel &
 fcitx-autostart &
+dunst &
 xrdb -merge ~/.dots/misc/Xresources
 xsetroot -cursor_name left_ptr
 export _JAVA_AWT_WM_NONREPARENTING=1
