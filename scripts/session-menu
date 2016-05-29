@@ -3,7 +3,7 @@ choice=$(echo -e "Power off\nReboot\nLog out" | rofi -dmenu -width 100 -p "Logge
 if [[ "$choice" == "Power off" ]]; then
 	poweroff
 elif [[ "$choice" == "Reboot" ]]; then
-	reboot
+	systemctl reboot
 elif [[ "$choice" == "Log out" ]]; then
 	bspc quit
 fi
