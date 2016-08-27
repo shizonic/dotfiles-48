@@ -36,5 +36,5 @@ Requires the [Material Design Icons font](https://materialdesignicons.com), plac
 I'll find more stuff to rice later...
 
 ## Thanks to...
- * [Cheese(치주군)/unstabler](https://github.com/unstabler) for the base of the zsh theme, which I have barely made any changes to so far therefore it is not included
+ * [Cheese(치즈군)/unstabler](https://github.com/unstabler) for the base of the zsh theme, which I have barely made any changes to so far therefore it is not included
  * [Nathan](https://github.com/neeasade) for his bspwm setup which inspired me to actually make this
